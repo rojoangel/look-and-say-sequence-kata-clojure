@@ -2,4 +2,4 @@
   (:require [look-and-say.aux :as aux]))
 
 (defn next-n [n]
-  (aux/seq->n (conj (aux/n->seq n) 1)))
+  (aux/seq->n (flatten (map #(conj [] 1 %1) (aux/n->seq n)))))
