@@ -1,4 +1,5 @@
-(ns look-and-say.core)
+(ns look-and-say.core
+  (:require [look-and-say.aux :as aux]))
 
 (defn next-n [n]
-  (+ 10 n))
+  (aux/seq->n (conj (aux/n->seq n) 1)))
