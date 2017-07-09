@@ -18,3 +18,8 @@
     (is (= 312211 (next-n 111221)))
     (is (= 13112221 (next-n 312211)))
     (is (= 1113213211 (next-n 13112221)))))
+
+(deftest test-generate
+  (testing "zero length sequence generation"
+    (is (= [1] (generate 1 0)))
+    (is (= [9] (generate 9 0)))))

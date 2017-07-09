@@ -14,3 +14,11 @@
        (reduce count-me-in nil)
        reverse
        aux/seq->n))
+
+(defn generate [seed length]
+  (loop [acc nil
+         n seed
+         length length]
+    (if (= 0 length)
+      (reverse (conj acc n))
+      (recur acc (next-n n) (dec length)))))
