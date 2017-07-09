@@ -22,4 +22,7 @@
 (deftest test-generate
   (testing "zero length sequence generation"
     (is (= [1] (generate 1 0)))
-    (is (= [9] (generate 9 0)))))
+    (is (= [9] (generate 9 0))))
+  (testing "length-one sequence generation"
+    (is (= [1 11] (generate 1 1)))
+    (is (= [9 19] (generate 9 1)))))
