@@ -28,4 +28,6 @@
     (is (= [9 19] (generate 9 1))))
   (testing "length-two sequence generation"
     (is (= [1 11 21] (generate 1 2)))
-    (is (= [9 19 1119] (generate 9 2)))))
+    (is (= [9 19 1119] (generate 9 2))))
+  (testing "sequence with seed 1 and length 7"
+    (is (= [1 11 21 1211 111221 312211 13112221 1113213211] (generate 1 7)))))
