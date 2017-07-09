@@ -5,7 +5,7 @@
   (let [last-count (last (butlast acc))
         last-n (last acc)]
     (if (= n last-n)
-      (conj (drop 1 acc) (inc last-count))
+      (concat (drop-last 2 acc) [(inc last-count) n])
       (concat acc [1 n]))))
 
 (defn next-n [n]
