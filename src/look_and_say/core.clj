@@ -9,4 +9,7 @@
       (concat acc [1 n]))))
 
 (defn next-n [n]
-  (aux/seq->n (reduce count-me-in nil (aux/n->seq n))))
+  (->> n
+       aux/n->seq
+       (reduce count-me-in nil)
+       aux/seq->n))
