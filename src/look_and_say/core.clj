@@ -20,5 +20,5 @@
          n seed
          length length]
     (if (= 0 length)
-      (reverse (conj acc n))
+      (reverse acc)
       (recur (conj acc n) (next-n n) (dec length)))))

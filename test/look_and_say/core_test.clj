@@ -21,13 +21,16 @@
 
 (deftest test-generate
   (testing "zero length sequence generation"
-    (is (= [1] (generate 1 0)))
-    (is (= [9] (generate 9 0))))
+    (is (= [] (generate 1 0)))
+    (is (= [] (generate 9 0))))
   (testing "length-one sequence generation"
-    (is (= [1 11] (generate 1 1)))
-    (is (= [9 19] (generate 9 1))))
+    (is (= [1] (generate 1 1)))
+    (is (= [9] (generate 9 1))))
   (testing "length-two sequence generation"
-    (is (= [1 11 21] (generate 1 2)))
-    (is (= [9 19 1119] (generate 9 2))))
-  (testing "sequence with seed 1 and length 7"
-    (is (= [1 11 21 1211 111221 312211 13112221 1113213211] (generate 1 7)))))
+    (is (= [1 11] (generate 1 2)))
+    (is (= [9 19] (generate 9 2))))
+  (testing "length-three sequence generation"
+    (is (= [1 11 21] (generate 1 3)))
+    (is (= [9 19 1119] (generate 9 3))))
+  (testing "sequence with seed 1 and length 8"
+    (is (= [1 11 21 1211 111221 312211 13112221 1113213211] (generate 1 8)))))
