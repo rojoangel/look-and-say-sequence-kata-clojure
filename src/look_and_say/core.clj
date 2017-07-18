@@ -28,16 +28,31 @@
             tail (drop-while equal-to-head ns)]
         (concat [(count head) (first head)] (next-seq tail))))))
 
-(defn- next-seq [ns]
-  (loop [ns ns
-         acc nil]
-    (if (empty? ns)
-      acc
-      (let [equal-to-head (fn [n]
-                            (= n (first ns)))
-            head (take-while equal-to-head ns)
-            tail (drop-while equal-to-head ns)]
-        (recur tail (concat acc [(count head) (first head)]))))))
+(comment
+  ; loop-recur tail recursion
+  (defn- next-seq [ns]
+    (loop [ns ns
+           acc nil]
+      (if (empty? ns)
+        acc
+        (let [equal-to-head (fn [n]
+                              (= n (first ns)))
+              head (take-while equal-to-head ns)
+              tail (drop-while equal-to-head ns)]
+          (recur tail (concat acc [(count head) (first head)])))))))
+
+
+(defn- next-seq
+  ([ns]
+   (next-seq ns nil))
+  ([ns acc]
+   (if (empty? ns)
+     acc
+     (let [equal-to-head (fn [n]
+                           (= n (first ns)))
+           head (take-while equal-to-head ns)
+           tail (drop-while equal-to-head ns)]
+       (recur tail (concat acc [(count head) (first head)]))))))
 
 (defn next-n [n]
   (->> n
