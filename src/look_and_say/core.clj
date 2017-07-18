@@ -4,11 +4,11 @@
 (comment
   ; reduce version using conj & reverse
   (defn- count-me-in [acc n]
-  (let [last-count (second acc)
-        last-n (first acc)]
-    (if (= n last-n)
-      (conj (drop 2 acc) (inc last-count) n)
-      (conj acc 1 n))))
+    (let [last-count (second acc)
+          last-n (first acc)]
+      (if (= n last-n)
+        (conj (drop 2 acc) (inc last-count) n)
+        (conj acc 1 n))))
 
   (defn next-n [n]
     (->> n
@@ -17,14 +17,27 @@
          reverse
          aux/seq->n)))
 
+(comment
+  ; recursive
+  (defn- next-seq [ns]
+    (if (empty? ns)
+      nil
+      (let [equal-to-head (fn [n]
+                            (= n (first ns)))
+            head (take-while equal-to-head ns)
+            tail (drop-while equal-to-head ns)]
+        (concat [(count head) (first head)] (next-seq tail))))))
+
 (defn- next-seq [ns]
-  (if (empty? ns)
-    nil
-    (let [equal-to-head (fn [n]
-                        (= n (first ns)))
-        head (take-while equal-to-head ns)
-        tail (drop-while equal-to-head ns)]
-    (concat [(count head) (first head)] (next-seq tail)))))
+  (loop [ns ns
+         acc nil]
+    (if (empty? ns)
+      acc
+      (let [equal-to-head (fn [n]
+                            (= n (first ns)))
+            head (take-while equal-to-head ns)
+            tail (drop-while equal-to-head ns)]
+        (recur tail (concat acc [(count head) (first head)]))))))
 
 (defn next-n [n]
   (->> n
