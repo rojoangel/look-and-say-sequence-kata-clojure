@@ -15,10 +15,14 @@
        reverse
        aux/seq->n))
 
+(comment
+  (defn generate [seed length]
+    (loop [acc nil
+           n seed
+           length length]
+      (if (= 0 length)
+        (reverse acc)
+        (recur (conj acc n) (next-n n) (dec length))))))
+
 (defn generate [seed length]
-  (loop [acc nil
-         n seed
-         length length]
-    (if (= 0 length)
-      (reverse acc)
-      (recur (conj acc n) (next-n n) (dec length)))))
+  (take length (iterate next-n seed)))
